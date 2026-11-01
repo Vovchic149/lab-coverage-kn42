@@ -1,0 +1,24 @@
+name: Coverage
+
+on:
+  push:
+  pull_request:
+
+defaults:
+  run:
+    working-directory: 03_coverage
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install coverage pytest pytest-cov
+      - run: pytest --cov=app --cov-branch --cov-report=term-missing --cov-report=xml --cov-fail-under=90
+      - uses: actions/upload-artifact@v4
+        with:
+          name: coverage-xml
+          path: 03_coverage/coverage.xml
