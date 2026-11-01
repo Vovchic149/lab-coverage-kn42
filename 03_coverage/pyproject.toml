@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "lab-testing-03-coverage"
+version = "0.1.0"
+description = "Лабораторна робота: покриття коду (coverage)"
+authors = ["Бейгул Володимир"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "*"
+pytest-cov = "*"
+coverage = "*"
+
+[tool.pytest.ini_options]
+testpaths = ["."]
+python_files = ["test_*.py"]
+pythonpath = ["."]
+norecursedirs = ["before_examples", ".git", "__pycache__", "htmlcov"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
